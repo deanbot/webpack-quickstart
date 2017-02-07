@@ -1,0 +1,27 @@
+{
+  "name": "vanilla-webpack-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {},
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "css-loader": "^0.26.1",
+    "file-loader": "^0.10.0",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^5.0.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "2"
+  },
+  "scripts": {
+    "dev": "webpack -d --watch",
+    "devServer": "webpack-dev-server",
+    "build": "webpack -p && cp src/index.html dist/index.html"
+  }
+}
