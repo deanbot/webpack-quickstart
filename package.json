@@ -27,7 +27,7 @@
     "webpack-dev-server": "2"
   },
   "scripts": {
-    "build": "webpack -p --display-error-details",
+    "build": "webpack --config webpack.production.config.js --display-error-details -p",
     "cleanBuild": "rm -r dist/*",
     "dev": "webpack -d --watch",
     "start": "webpack-dev-server"

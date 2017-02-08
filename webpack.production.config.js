@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 
+// plugins
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CleanWebpackPluginConfig = new CleanWebpackPlugin('dist');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -14,6 +15,7 @@ const CommonsChunkPluginConfig = new webpack.optimize.CommonsChunkPlugin({
   filename: 'assets/commons.js',
   minChunks: 2,
 });
+const UglifyJsPluginConfig = new webpack.optimize.UglifyJsPlugin({});
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -55,7 +57,8 @@ module.exports = {
   plugins: [ 
     HtmlWebpackPluginConfig, 
     CleanWebpackPluginConfig,
-    CommonsChunkPluginConfig
+    CommonsChunkPluginConfig,
+    UglifyJsPluginConfig
   ],
   devServer: {
     contentBase: path.resolve(__dirname, './src')
