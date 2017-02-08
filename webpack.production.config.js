@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 // plugins
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CleanWebpackPluginConfig = new CleanWebpackPlugin('dist');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -37,9 +38,17 @@ module.exports = {
         test: /\.(sass|scss)$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
       },
+      // target app specific files
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
+        include: path.join(__dirname, 'src')
+      },
+      // target vendor files - exclude app specific styles
+      {
+        test: /\.css$/,
+        exclude: path.join(__dirname, 'src'),
+        use: ExtractTextPlugin.extract(['css-loader'])
       },
       { 
         test: /\.(js|jsx)$/, 
@@ -58,7 +67,8 @@ module.exports = {
     HtmlWebpackPluginConfig, 
     CleanWebpackPluginConfig,
     CommonsChunkPluginConfig,
-    UglifyJsPluginConfig
+    UglifyJsPluginConfig,
+    new ExtractTextPlugin('styles/vendor.css')
   ],
   devServer: {
     contentBase: path.resolve(__dirname, './src')
