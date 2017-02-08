@@ -30,10 +30,6 @@ module.exports = {
   },
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules']
-    // modules: ['node_modules', 'src'],
-    // alias: {
-    //   'bootstrap-css': path.join(__dirname, '../node_modules/bootstrap/dist/bootstrap.min.css')
-    // }
   },
   // plugins: [
   //   new webpack.optimize.CommonsChunkPlugin({
