@@ -9,6 +9,11 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   filename: 'index.html',
   inject: 'body'
 });
+const CommonsChunkPluginConfig = new webpack.optimize.CommonsChunkPlugin({
+  name: 'commons',
+  filename: 'assets/commons.js',
+  minChunks: 2,
+});
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -49,12 +54,8 @@ module.exports = {
   },
   plugins: [ 
     HtmlWebpackPluginConfig, 
-    CleanWebpackPluginConfig
-  //   new webpack.optimize.CommonsChunkPlugin({
-  //     name: 'commons',
-  //     filename: 'commons.js',
-  //     minChunks: 2,
-  //   }),
+    CleanWebpackPluginConfig,
+    CommonsChunkPluginConfig
   ],
   devServer: {
     contentBase: path.resolve(__dirname, './src'),

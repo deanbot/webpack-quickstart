@@ -1,9 +1,0 @@
-<IfModule mod_rewrite.c>
-    Options -MultiViews
-
-    RewriteEngine On
-    RewriteBase /dist
-
-    #RewriteCond %{REQUEST_FILENAME} !-f
-    #RewriteRule ^ app_dev.php [QSA,L]
-</IfModule>
