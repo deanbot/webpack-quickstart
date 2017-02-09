@@ -1,6 +1,10 @@
 #main {
-	margin-top: 30px;
+	margin-top: 10px;
+
 	h1 {
-		color: $primary-color;
+		color: #777;
+		span {
+			color: $primary-color;
+		}
 	}
 }

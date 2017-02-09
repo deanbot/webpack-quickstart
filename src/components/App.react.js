@@ -1,7 +1,8 @@
 var React = require('react');
-var ForumHeader = require('./ForumHeader.react.js');
+var AppHeader = require('./AppHeader.react.js');
+var Junimo = require('./AppJunimo.react.js');
 
-var Forum = React.createClass({
+var App = React.createClass({
 
 	getInitialState: function() {
 		return {
@@ -25,9 +26,10 @@ var Forum = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<ForumHeader allAnswers={ this.state.allAnswers }></ForumHeader>
+				<AppHeader allAnswers={ this.state.allAnswers }></AppHeader>
+				<Junimo></Junimo>
 			</div>
 		);
 	}
 });
-module.exports = Forum;
+module.exports = App;

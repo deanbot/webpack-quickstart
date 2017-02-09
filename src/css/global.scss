@@ -1,0 +1,12 @@
+@import 'vars';
+@import 'body/main';
+
+body.body {
+	background-color: gray;
+}
+.birb {
+	display: block;
+	width: 250px;
+	height: 250px;
+	background-image: url('../images/birb.png');
+}

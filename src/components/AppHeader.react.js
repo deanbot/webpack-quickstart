@@ -1,17 +1,17 @@
 var React = require('react');
-require('./forum.scss');
+require('./appHeader.scss');
 
-var ForumHeader = React.createClass({
+var AppHeader = React.createClass({
 	render: function() {
 
 		console.log(this.props.allAnswers);
 
 		return (
-				<nav className="forum-header-navbar navbar navbar-default">
+				<nav className="app-header-navbar navbar navbar-default">
 				  <div className="container-fluid">
 				    <div className="navbar-header">
 				      <a className="navbar-brand" href="#">
-				        React Forum
+				        ReactJS + Webpack + Bootstrap Quickstart App
 				      </a>
 				    </div>
 				  </div>
@@ -19,4 +19,4 @@ var ForumHeader = React.createClass({
 			);
 	}
 });
-module.exports = ForumHeader;
+module.exports = AppHeader;
