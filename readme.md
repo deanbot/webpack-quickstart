@@ -15,11 +15,11 @@ This is a simple webpack V2 build example using yarn, react, bootstrap, sass, an
 
 # Setup
 
-install yarn
-run `yarn` to install dependencies
+1. install yarn
+2. run `yarn` to install dependencies
 
 # Commands
 
-run `yarn start` to launch dev server. 
-run `yarn build` to rebuild the dist folder.
-run `yarn dev` to rebuild dev version of dist artifacts automatically.
+* run `yarn start` to launch dev server. 
+* run `yarn build` to rebuild the dist folder.
+* run `yarn dev` to rebuild dev version of dist artifacts automatically.
