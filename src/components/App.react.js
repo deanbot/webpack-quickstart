@@ -1,24 +1,15 @@
-var React = require('react');
-var AppHeader = require('./AppHeader.react.js');
-var Junimo = require('./AppJunimo.react.js');
+const React = require('react');
+const AppHeader = require('./AppHeader.react.js');
+const AppBody = require('./AppBody.react.js');
 
-var App = React.createClass({
+const App = React.createClass({
 
 	getInitialState: function() {
 		return {
-			allAnswers: {
-				'1': {
-					body: 'Isn\'t that about time travel?',
-					correct: false
-				},
-				'2': {
-					body: 'React and flux are a tool and methodologies for building the front end of web applications.',
-					correct: false
-				},
-				'3': {
-					body: 'React is a synonym for \'respond\'',
-					correct: false
-				}
+			body: {
+				exclamation: 'Oh my goodness!',
+				message: 'A webpack build from the junimos!',
+				helpText: 'You\'re seeing the <code>./src/index.html</code> template which includes an html id used to render the react app in <code>./src/app.js</code>. The components in <code>./src/components</code> are used in the react app.'
 			}
 		}
 	},
@@ -26,8 +17,10 @@ var App = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<AppHeader allAnswers={ this.state.allAnswers }></AppHeader>
-				<Junimo></Junimo>
+				<AppHeader></AppHeader>
+				<div className="container">
+					<AppBody content={this.state.body}></AppBody>
+				</div>
 			</div>
 		);
 	}

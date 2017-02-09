@@ -1,8 +1,8 @@
-var React = require('react');
-var src = require('../images/junimo.gif');
+const React = require('react');
+const src = require('../images/junimo.gif');
 require('./AppJunimo.scss');
 
-var Junimo = React.createClass({
+const AppJunimo = React.createClass({
 	render: function() {
 		return (
 			<div className="junimo">
@@ -11,4 +11,4 @@ var Junimo = React.createClass({
 		);
 	}
 });
-module.exports = Junimo;
+module.exports = AppJunimo;

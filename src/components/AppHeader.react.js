@@ -1,7 +1,7 @@
-var React = require('react');
+const React = require('react');
 require('./appHeader.scss');
 
-var AppHeader = React.createClass({
+const AppHeader = React.createClass({
 	render: function() {
 
 		console.log(this.props.allAnswers);
@@ -11,7 +11,7 @@ var AppHeader = React.createClass({
 				  <div className="container-fluid">
 				    <div className="navbar-header">
 				      <a className="navbar-brand" href="#">
-				        ReactJS + Webpack + Bootstrap Quickstart App
+				        Webpack Quickstart App
 				      </a>
 				    </div>
 				  </div>
