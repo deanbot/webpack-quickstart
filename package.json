@@ -23,6 +23,8 @@
     "node-sass": "^4.5.0",
     "sass-loader": "^5.0.0",
     "style-loader": "^0.13.1",
+    "uglify-js": "^2.7.5",
+    "uglifyjs-webpack-plugin": "^0.1.4",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
     "webpack-dev-server": "2"
