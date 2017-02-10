@@ -1,9 +1,8 @@
 const React = require('react');
-const AppHeader = require('./AppHeader.react.js');
-const AppBody = require('./AppBody.react.js');
+const AppHeader = require('./AppHeader.react');
+const AppBody = require('./AppBody.react');
 
 const App = React.createClass({
-
 	getInitialState: function() {
 		return {
 			body: {

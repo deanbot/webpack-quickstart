@@ -4,11 +4,11 @@ require('bootstrap/dist/css/bootstrap.min.css');
 // include global app styles 
 import styles from './css/global.scss';
 
-var React = require('react');
-var ReactDOM = require('react-dom');
+const React = require('react');
+const ReactDOM = require('react-dom');
 
 // include react components
-var App = require('./components/App.react.js');
+const App = require('./components/App.react');
 
 ReactDOM.render(
 	React.createElement(App, null),

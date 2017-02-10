@@ -4,8 +4,6 @@ require('./appHeader.scss');
 const AppHeader = React.createClass({
 	render: function() {
 
-		console.log(this.props.allAnswers);
-
 		return (
 				<nav className="app-header-navbar navbar navbar-default">
 				  <div className="container-fluid">
