@@ -1,8 +1,14 @@
-const path = require("path");
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+import webpack from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import ExtractTextPlugin from "extract-text-webpack-plugin";
+import WebpackMd5Hash from "webpack-md5-hash";
+// import autoprefixer from "autoprefixer";
+import path from "path";
+
+const GLOBALS = {
+  "process.env.NODE_ENV": JSON.stringify("production"),
+  __DEV__: false
+};
 
 // plugins
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -18,7 +24,6 @@ const CommonsChunkPluginConfig = new webpack.optimize.CommonsChunkPlugin({
 const SourceMapDevToolPlugin = new webpack.SourceMapDevToolPlugin();
 const ExtractVendorCss = new ExtractTextPlugin("styles/vendor.css");
 const ExtractAppCss = new ExtractTextPlugin("styles/app.css");
-const UglifyJsPluginConfig = new UglifyJsPlugin();
 
 // config
 const paths = {
@@ -26,11 +31,11 @@ const paths = {
   dist: path.resolve(__dirname, "./dist")
 };
 
-module.exports = {
+export default {
+  devtool: "source-map",
   context: paths.src,
-  entry: {
-    app: "./app.js"
-  },
+  entry: path.resolve(__dirname, "src/index"),
+  target: "web",
   output: {
     path: paths.dist,
     filename: "assets/[name].bundle.js"
@@ -111,15 +116,13 @@ module.exports = {
   },
 
   plugins: [
+    new WebpackMd5Hash(),
+    new webpack.DefinePlugin(GLOBALS),
     HtmlWebpackPluginConfig,
     CommonsChunkPluginConfig,
-    UglifyJsPluginConfig,
+    new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
     ExtractAppCss,
     ExtractVendorCss,
     SourceMapDevToolPlugin
-  ],
-
-  devServer: {
-    contentBase: paths.src
-  }
+  ]
 };

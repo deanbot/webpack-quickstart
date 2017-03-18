@@ -1,4 +1,18 @@
-node_modules
-dist
+yarn
 *.lock
 archive
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Dependency directory
+node_modules
+
+#dist folder
+dist
+
+#VSCode metadata
+.vscode
+
+# Mac files
+.DS_Store

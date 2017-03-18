@@ -1,20 +1,8 @@
-const path = require("path");
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+import webpack from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import ExtractTextPlugin from "extract-text-webpack-plugin";
+import path from "path";
 
-// plugin config
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: "./index.html",
-  filename: "index.html",
-  inject: "body"
-});
-const CommonsChunkPluginConfig = new webpack.optimize.CommonsChunkPlugin({
-  name: "commons",
-  filename: "assets/commons.js",
-  minChunks: 2
-});
-const SourceMapDevToolPlugin = new webpack.SourceMapDevToolPlugin();
 const ExtractVendorCss = new ExtractTextPlugin("styles/vendor.css");
 
 // config
@@ -23,11 +11,15 @@ const paths = {
   dist: path.resolve(__dirname, "./dist")
 };
 
-module.exports = {
+export default {
   context: paths.src,
-  entry: {
-    app: "./app.js"
-  },
+  entry: [
+    // must be first entry to properly set public path
+    "./src/webpack-public-path",
+    "webpack-hot-middleware/client?reload=true",
+    path.resolve(__dirname, "src/index.js") // Defining path seems necessary for this to work consistently on Windows machines.
+  ],
+  target: "web",
   output: {
     path: paths.dist,
     filename: "assets/[name].bundle.js"
@@ -37,11 +29,8 @@ module.exports = {
       // load es6/jsx
       {
         test: /\.(js|jsx)$/,
-        loader: "babel-loader",
-        query: {
-          presets: ["es2015", "react"]
-        },
-        include: [paths.src]
+        exclude: /node_modules/,
+        loader: "babel-loader"
       },
 
       // load styles
@@ -71,19 +60,26 @@ module.exports = {
 
       // load images
       {
-        test: /\.(jpg|jpeg|gif|png)$/,
-        exclude: /node_modules/,
-        loader: "url-loader",
-        query: {
-          limit: 25000,
-          name: "./images/[sha512:hash:base64:7].[ext]"
-        }
+        test: /\.(jpe?g|png|gif)$/i,
+        loader: "file-loader?name=[name].[ext]"
       },
 
       // load fonts
       {
-        test: /\.(woff2?|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
-        use: "file-loader?name=./fonts/[name].[ext]"
+        test: /\.eot(\?v=\d+.\d+.\d+)?$/,
+        loader: "file-loader"
+      },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "url-loader?limit=10000&mimetype=application/font-woff"
+      },
+      {
+        test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
+        loader: "url-loader?limit=10000&mimetype=application/octet-stream"
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url-loader?limit=10000&mimetype=image/svg+xml"
       }
     ]
   },
@@ -96,13 +92,22 @@ module.exports = {
   },
 
   plugins: [
-    HtmlWebpackPluginConfig,
-    CommonsChunkPluginConfig,
-    ExtractVendorCss,
-    SourceMapDevToolPlugin
+    new webpack.DefinePlugin({
+      "process.env.NODE_ENV": JSON.stringify("development"), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
+      __DEV__: true
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new HtmlWebpackPlugin({
+      template: "./index.html",
+      filename: "index.html",
+      inject: "body"
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "commons",
+      filename: "assets/commons.js",
+      minChunks: 2
+    })
   ],
-
-  devServer: {
-    contentBase: paths.src
-  }
+  devtool: "eval-source-map"
 };
