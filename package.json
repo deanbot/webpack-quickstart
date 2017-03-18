@@ -1,11 +1,14 @@
 {
-  "name": "vanilla-webpack-react",
+  "name": "webpack-quickstart",
   "version": "1.0.0",
-  "main": "app.js",
   "license": "MIT",
   "scripts": {
+    "start-message": "babel-node tools/startMessage.js",
+    "prestart": "npm-run-all --parallel start-message",
+    "start": "npm-run-all --parallel test:watch open:src lint:watch",
+    "open:src": "babel-node tools/srcServer.js",
     "lint": "esw webpack.config.* src tools --color",
-    "lint:watch": "npm run lint -- --watch",
+    "lint:watch": "yarn run lint -- --watch",
     "clean-dist": "yarn run remove-dist && mkdir dist",
     "remove-dist": "rimraf ./dist",
     "prebuild": "yarn run clean-dist && yarn run lint && yarn run test",
@@ -13,7 +16,7 @@
     "test": "jest",
     "test:cover": "yarn run test -- --coverage ",
     "test:watch": "yarn run test -- --watch",
-    "open:cover": "npm run test:cover && open coverage/lcov-report/index.html",
+    "open:cover": "yarn run test:cover && open coverage/lcov-report/index.html",
     "analyze-bundle": "babel-node ./tools/analyzeBundle.js"
   },
   "author": "Dean Verleger",
@@ -44,6 +47,7 @@
     "babel-preset-stage-1": "^6.22.0",
     "chalk": "^1.1.3",
     "clean-webpack-plugin": "^0.1.15",
+    "connect-history-api-fallback": "^1.3.0",
     "coveralls": "^2.12.0",
     "css-loader": "^0.27.3",
     "enzyme": "^2.7.1",
@@ -58,7 +62,6 @@
     "image-webpack-loader": "^3.2.0",
     "jest": "^19.0.2",
     "node-sass": "^4.5.0",
-    "npm-run-all": "^4.0.2",
     "open": "^0.0.5",
     "postcss-loader": "^1.3.3",
     "prompt": "^1.0.0",
@@ -70,7 +73,8 @@
     "uglify-js": "^2.7.5",
     "uglifyjs-webpack-plugin": "^0.1.4",
     "url-loader": "^0.5.7",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "yarn-run-all": "^3.1.1"
   },
   "repository": {
     "type": "git",

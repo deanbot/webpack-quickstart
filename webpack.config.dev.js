@@ -1,6 +1,7 @@
 import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
+import autoprefixer from "autoprefixer";
 import path from "path";
 
 const ExtractVendorCss = new ExtractTextPlugin("styles/vendor.css");
@@ -12,7 +13,10 @@ const paths = {
 };
 
 export default {
-  context: paths.src,
+  resolve: {
+    extensions: ["*", ".js", ".jsx", ".json"]
+  },
+  devtool: "eval-source-map",
   entry: [
     // must be first entry to properly set public path
     "./src/webpack-public-path",
@@ -21,8 +25,10 @@ export default {
   ],
   target: "web",
   output: {
-    path: paths.dist,
-    filename: "assets/[name].bundle.js"
+    path: path.resolve(__dirname, "dist"),
+    // filename: "assets/[name].bundle.js"
+    publicPath: "/",
+    filename: "bundle.js"
   },
   module: {
     rules: [
@@ -84,13 +90,6 @@ export default {
     ]
   },
 
-  resolve: {
-    modules: [paths.src, "node_modules"],
-
-    // Allow to omit extensions when requiring these files
-    extensions: [".js", ".jsx"]
-  },
-
   plugins: [
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify("development"), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
@@ -99,15 +98,31 @@ export default {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
-      template: "./index.html",
-      filename: "index.html",
-      inject: "body"
+      template: "src/index.html",
+      // filename: "index.html",
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true
+      },
+      inject: true
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "commons",
-      filename: "assets/commons.js",
-      minChunks: 2
+    ExtractVendorCss,
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: "commons",
+    //   filename: "assets/commons.js",
+    //   minChunks: 2
+    // }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: false,
+      debug: true,
+      noInfo: true, // set to false to see a list of every file being bundled.
+      options: {
+        sassLoader: {
+          includePaths: [path.resolve(__dirname, "src", "scss")]
+        },
+        context: "/",
+        postcss: () => [autoprefixer]
+      }
     })
-  ],
-  devtool: "eval-source-map"
+  ]
 };

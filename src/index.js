@@ -2,7 +2,7 @@
 require("bootstrap/dist/css/bootstrap.min.css");
 
 // include global app styles
-import styles from "./css/global.scss"; // eslint-disable-line no-unused-vars
+require("./css/global.scss");
 
 const React = require("react");
 const ReactDOM = require("react-dom");
