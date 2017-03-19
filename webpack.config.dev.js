@@ -5,8 +5,6 @@ import autoprefixer from "autoprefixer";
 import path from "path";
 
 const ExtractVendorCss = new ExtractTextPlugin("styles/vendor.css");
-
-// config
 const paths = {
   src: path.resolve(__dirname, "./src"),
   dist: path.resolve(__dirname, "./dist")
@@ -25,8 +23,7 @@ export default {
   ],
   target: "web",
   output: {
-    path: path.resolve(__dirname, "dist"),
-    // filename: "assets/[name].bundle.js"
+    path: paths.dist,
     publicPath: "/",
     filename: "bundle.js"
   },
@@ -45,8 +42,8 @@ export default {
         use: [
           "style-loader",
           "css-loader?sourceMap",
-          "autoprefixer-loader",
-          "sass-loader"
+          "postcss-loader",
+          "sass-loader?sourceMap"
         ]
       },
 
@@ -97,16 +94,15 @@ export default {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    ExtractVendorCss,
     new HtmlWebpackPlugin({
       template: "src/index.html",
-      // filename: "index.html",
       minify: {
         removeComments: true,
         collapseWhitespace: true
       },
       inject: true
     }),
-    ExtractVendorCss,
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: "commons",
     //   filename: "assets/commons.js",
