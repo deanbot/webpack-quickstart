@@ -9,7 +9,11 @@ An es6 webpack react app quickstart with browserfy, linting, testing and other g
 
 # Commands
 
-* run `yarn start` to launch dev server along with linting and testing watches
-* run `yarn build` to build the dist folder and launch the dist server.
-* `yarn lint`
+* `yarn start` - launch dev server, launch linting and testing in watch mode
+* `yarn build` - build dist folder and launch the dist server.
+* `yarn lint` - run linter
+* `yarn lint:watch` - run linter in watch mode
+* `yarn test` - run jest tests
+* `yarn test:watch` - run jest tests in watch mode
+* `yarn analyze-bundle` - analyze prod bundle
 * ~~`yarn test:cover` - coverages test~~
