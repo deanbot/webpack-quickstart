@@ -67,11 +67,20 @@ prompt.get([{ name: 'deleteGit', description: "Delete the git repository?  YES t
           });
         });
 
-        // remove Overview section of readme.
+        // remove Overview section of readme
         var overviewReplacement = result.description ? `# Overview\n\n${result.description}\n\n` : '';
         replace({
           regex: `(# Overview)+[^#]*`,
           replacement: overviewReplacement,
+          paths: ['readme.md'],
+          recursive: false,
+          silent: true
+        });
+
+        // remove Quickstart Development section of readme
+        replace({
+          regex: `(## Setup for Quickstart Development)+[^#]*`,
+          replacement: '',
           paths: ['readme.md'],
           recursive: false,
           silent: true
