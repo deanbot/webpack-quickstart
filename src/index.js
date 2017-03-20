@@ -1,13 +1,23 @@
-// include vendor styles
-require("bootstrap/dist/css/bootstrap.min.css");
+/* eslint-disable import/default */
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { Router, browserHistory } from 'react-router';
+import routes from './routes';
+import configureStore from './store/configureStore';
+require('./favicon.ico'); // Tell webpack to load favicon.ico
+require('bootstrap/dist/css/bootstrap.min.css'); // include vendor styles
+require('./styles/global.scss'); // include global app styles
+import { syncHistoryWithStore } from 'react-router-redux';
 
-// include global app styles
-require("./styles/global.scss");
+const store = configureStore();
 
-const React = require("react");
-const ReactDOM = require("react-dom");
+// Create an enhanced history that syncs navigation events with the store
+const history = syncHistoryWithStore(browserHistory, store);
 
-// include react components
-const App = require("./components/App.react");
-
-ReactDOM.render(React.createElement(App, null), document.getElementById("app"));
+render(
+  <Provider store={store}>
+    <Router history={history} routes={routes} />
+  </Provider>,
+  document.getElementById('app')
+);
