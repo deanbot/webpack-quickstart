@@ -2,7 +2,7 @@
 require("bootstrap/dist/css/bootstrap.min.css");
 
 // include global app styles
-require("./css/global.scss");
+require("./styles/global.scss");
 
 const React = require("react");
 const ReactDOM = require("react-dom");
