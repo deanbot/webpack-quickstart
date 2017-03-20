@@ -67,6 +67,16 @@ prompt.get([{ name: 'deleteGit', description: "Delete the git repository?  YES t
           });
         });
 
+        // remove Overview section of readme.
+        var overviewReplacement = result.description ? `# Overview\n\n${result.description}\n\n` : '';
+        replace({
+          regex: `(# Overview)+[^#]*`,
+          replacement: overviewReplacement,
+          paths: ['readme.md'],
+          recursive: false,
+          silent: true
+        });
+
         // remove all setup scripts from the 'tools' folder
         console.log(chalkSuccess('\nSetup complete! Cleaning up...\n'));
         removePackageJsonScriptEntry('setup');
