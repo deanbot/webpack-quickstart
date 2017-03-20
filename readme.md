@@ -2,10 +2,18 @@
 
 An es6 webpack react app quickstart with browserfy, linting, testing and other goodies. Much credit goes to coryhouse's [react-slingshot](https://github.com/coryhouse/react-slingshot).
 
-# Setup
+# Get Started
 
-1. install yarn
-2. run `yarn` to install dependencies
+1. [Install yarn](https://yarnpkg.com/lang/en/docs/install/).
+2. Clone the project.
+3. Run `yarn run setup`. This installs dependencies and updates the package for a project's use.
+4. Run `yarn remove-demo`
+
+## Setup for Quickstart dev
+
+1. [Install yarn](https://yarnpkg.com/lang/en/docs/install/).
+2. Clone the project.
+3. Run `yarn` to install dependencies.
 
 # Commands
 
@@ -15,5 +23,7 @@ An es6 webpack react app quickstart with browserfy, linting, testing and other g
 * `yarn lint:watch` - run linter in watch mode
 * `yarn test` - run jest tests
 * `yarn test:watch` - run jest tests in watch mode
+* `yarn setup` - install dependencies and update package for a project's use
+* `yarn remove-demo` - completely remove demo portion of project
 * `yarn analyze-bundle` - analyze prod bundle
 * ~~`yarn test:cover` - coverages test~~

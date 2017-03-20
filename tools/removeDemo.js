@@ -28,11 +28,11 @@ const filesToCreate = [
   {
     path: './src/index.js',
     content: '// Set up your application entry point here...'
-  },
+  }/*,
   {
     path: './src/reducers/index.js',
     content: '// Set up your root reducer here...\n import { combineReducers } from \'redux\';\n export default combineReducers;'
-  }
+  }*/
 ];
 
 function removePath(path, callback) {
