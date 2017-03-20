@@ -12,6 +12,10 @@ module.exports = [
     description: 'Author'
   },
   {
+    name: 'license',
+    description: 'License (default: MIT)'
+  },
+  {
     name: 'description',
     description: 'Project description'
   }

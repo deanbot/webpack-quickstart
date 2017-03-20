@@ -2,6 +2,8 @@
   "name": "webpack-quickstart",
   "version": "1.0.0",
   "description": "Quickstart for creating React apps",
+  "author": "Dean Verleger",
+  "license": "MIT",
   "scripts": {
     "setup": "node tools/setup/setupMessage.js && yarn && node tools/setup/setup.js",
     "remove-demo": "babel-node tools/removeDemo.js",
@@ -22,7 +24,6 @@
     "open:cover": "yarn run test:cover && babel-node ./tools/cover.js",
     "analyze-bundle": "babel-node ./tools/analyzeBundle.js"
   },
-  "author": "Dean Verleger",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "browser-sync": "^2.18.8",
@@ -34,7 +35,6 @@
     "webpack-md5-hash": "^0.0.5"
   },
   "devDependencies": {
-    "autoprefixer-loader": "^3.2.0",
     "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
