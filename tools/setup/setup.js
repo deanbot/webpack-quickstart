@@ -4,7 +4,7 @@ var chalk = require('chalk');
 var replace = require("replace");
 var prompt = require("prompt");
 var prompts = require('./setupPrompts');
-
+var fs = require("fs");
 
 var chalkSuccess = chalk.green;
 var chalkProcessing = chalk.blue;
@@ -69,6 +69,7 @@ prompt.get([{ name: 'deleteGit', description: "Delete the git repository?  YES t
 
         // remove all setup scripts from the 'tools' folder
         console.log(chalkSuccess('\nSetup complete! Cleaning up...\n'));
+        removePackageJsonScriptEntry('setup');
         rimraf('./tools/setup', error => {
           if (error) throw new Error(error);
         });
@@ -77,7 +78,6 @@ prompt.get([{ name: 'deleteGit', description: "Delete the git repository?  YES t
   }
 });
 
-/*
 function removePackageJsonScriptEntry(scriptName) {
   const packageJsonPath = './package.json';
   let fileData = fs.readFileSync(packageJsonPath);
@@ -85,4 +85,4 @@ function removePackageJsonScriptEntry(scriptName) {
   delete content.scripts[scriptName];
   fs.writeFileSync(packageJsonPath,
     JSON.stringify(content, null, 2) + '\n');
-}*/
+}
