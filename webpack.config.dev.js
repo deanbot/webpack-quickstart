@@ -1,31 +1,31 @@
-import webpack from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import ExtractTextPlugin from "extract-text-webpack-plugin";
-import autoprefixer from "autoprefixer";
-import path from "path";
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import autoprefixer from 'autoprefixer';
+import path from 'path';
 
-const ExtractVendorCss = new ExtractTextPlugin("styles/vendor.css");
+const ExtractVendorCss = new ExtractTextPlugin('styles/vendor.css');
 const paths = {
-  src: path.resolve(__dirname, "./src"),
-  dist: path.resolve(__dirname, "./dist")
+  src: path.resolve(__dirname, './src'),
+  dist: path.resolve(__dirname, './dist')
 };
 
 export default {
   resolve: {
-    extensions: ["*", ".js", ".jsx", ".json"]
+    extensions: ['*', '.js', '.jsx', '.json']
   },
-  devtool: "eval-source-map",
+  devtool: 'eval-source-map',
   entry: [
     // must be first entry to properly set public path
-    "./src/webpack-public-path",
-    "webpack-hot-middleware/client?reload=true",
-    path.resolve(__dirname, "src/index.js") // Defining path seems necessary for this to work consistently on Windows machines.
+    './src/webpack-public-path',
+    'webpack-hot-middleware/client?reload=true',
+    path.resolve(__dirname, 'src/index.js') // Defining path seems necessary for this to work consistently on Windows machines.
   ],
-  target: "web",
+  target: 'web',
   output: {
     path: paths.dist,
-    publicPath: "/",
-    filename: "bundle.js"
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   module: {
     rules: [
@@ -33,70 +33,56 @@ export default {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: 'babel-loader'
       },
+
+      // load fonts
+      {
+        test: /\.(woff2?|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        use: 'file-loader?name=./fonts/[name].[ext]'
+      },
+
+      // load images
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        loader: 'file-loader?name=[name].[ext]'
+      },
+
+      // load favicon
+      { test: /\.ico$/, loader: 'file-loader?name=[name].[ext]' },
 
       // load styles
       {
         test: /\.(sass|scss)$/,
-        use: [
-          "style-loader",
-          "css-loader?sourceMap",
-          "postcss-loader",
-          "sass-loader?sourceMap"
-        ]
+        use: ['style-loader', 'css-loader?sourceMap', 'postcss-loader', 'sass-loader?sourceMap']
       },
 
       // load app styles - include only css from source
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader?sourceMap"],
+        use: ['style-loader', 'css-loader?sourceMap'],
         include: paths.src
       },
 
       // load vendor styles - exclude css from source
       {
         test: /\.css$/,
-        use: ExtractVendorCss.extract(["css-loader?sourceMap"]),
+        use: ExtractVendorCss.extract(['css-loader?sourceMap']),
         exclude: paths.src
-      },
-
-      // load images
-      {
-        test: /\.(jpe?g|png|gif)$/i,
-        loader: "file-loader?name=[name].[ext]"
-      },
-
-      // load fonts
-      {
-        test: /\.eot(\?v=\d+.\d+.\d+)?$/,
-        loader: "file-loader"
-      },
-      {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "url-loader?limit=10000&mimetype=application/font-woff"
-      },
-      {
-        test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
-        loader: "url-loader?limit=10000&mimetype=application/octet-stream"
-      },
-      {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url-loader?limit=10000&mimetype=image/svg+xml"
       }
     ]
   },
 
   plugins: [
     new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify("development"), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
+      'process.env.NODE_ENV': JSON.stringify('development'), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
       __DEV__: true
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     ExtractVendorCss,
     new HtmlWebpackPlugin({
-      template: "src/index.html",
+      template: 'src/index.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true
@@ -114,9 +100,9 @@ export default {
       noInfo: true, // set to false to see a list of every file being bundled.
       options: {
         sassLoader: {
-          includePaths: [path.resolve(__dirname, "src", "scss")]
+          includePaths: [path.resolve(__dirname, 'src', 'scss')]
         },
-        context: "/",
+        context: '/',
         postcss: () => [autoprefixer]
       }
     })

@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux';
-// import fuelSavings from './fuelSavingsReducer';
 import { routerReducer } from 'react-router-redux';
+import ajaxStatus from './ajaxStatusReducer';
+import group from './groupReducer';
+import groupType from './groupTypeReducer';
 
 const rootReducer = combineReducers({
-  // fuelSavings,
+  ajaxStatus,
+  group,
+  groupType,
   routing: routerReducer
 });
 

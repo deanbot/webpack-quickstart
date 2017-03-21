@@ -25,10 +25,7 @@
     "jest": true
   },
   "rules": {
-    "quotes": [
-      "error",
-      "single"
-    ],
+    "quotes": 0,
     "no-console": 1,
     "no-debugger": 1,
     "no-var": 1,
