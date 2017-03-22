@@ -15,7 +15,7 @@ const GroupSwitchControl = ({ loading, groupType, onSwitch }) => {
         <button
           type="button"
           value={groupTypes.GROUP_TYPE_JUNIMO}
-          className={'btn btn-default' + (groupType == groupTypes.GROUP_TYPE_JUNIMO ? 'active' : '')}
+          className={'btn btn-default' + (groupType == groupTypes.GROUP_TYPE_JUNIMO ? ' active' : '')}
           onClick={switchType}
         >
           Junimo
@@ -23,7 +23,7 @@ const GroupSwitchControl = ({ loading, groupType, onSwitch }) => {
         <button
           type="button"
           value={groupTypes.GROUP_TYPE_BIRB}
-          className={'btn btn-default' + (groupType == groupTypes.GROUP_TYPE_BIRB ? 'active' : '')}
+          className={'btn btn-default' + (groupType == groupTypes.GROUP_TYPE_BIRB ? ' active' : '')}
           onClick={switchType}
         >
           Birb

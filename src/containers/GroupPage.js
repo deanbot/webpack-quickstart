@@ -4,17 +4,17 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions/groupActions';
 import GroupControl from '../components/group/GroupControl';
 
-export const GroupPage = props => {
+export const GroupPage = ({ loading, actions, groupType, group }) => {
   return (
     <GroupControl
-      loading={props.loading}
-      onSwitch={props.actions.changeGroupType}
-      groupType={props.groupType}
-      members={props.group}
-      onRemove={props.actions.removeFromGroup}
-      onAdd={props.actions.addToGroup}
-      onSave={props.actions.saveGroup}
-      onLoad={props.actions.loadGroup}
+      loading={loading}
+      onSwitch={actions.changeGroupType}
+      groupType={groupType}
+      members={group}
+      onRemove={actions.removeFromGroup}
+      onAdd={actions.addToGroup}
+      onSave={actions.saveGroup}
+      onLoad={actions.loadGroup}
     />
   );
 };

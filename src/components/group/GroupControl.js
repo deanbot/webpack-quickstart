@@ -8,14 +8,9 @@ class GroupControl extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.onSwitch = this.onSwitch.bind(this);
     this.onAdd = this.onAdd.bind(this);
     this.onRemove = this.onRemove.bind(this);
     this.onSave = this.onSave.bind(this);
-  }
-
-  onSwitch(type) {
-    this.props.onSwitch(type);
   }
 
   onAdd() {
@@ -34,15 +29,15 @@ class GroupControl extends React.Component {
   }
 
   render() {
-    const { groupType, members, loading } = this.props;
+    const { groupType, members, loading, onSwitch, onLoad } = this.props;
     return (
       <div className="group-control">
         <div className="row">
           <div className="col-xs-6">
-            <GroupSwitchControl onSwitch={this.onSwitch} groupType={groupType} loading={loading} />
+            <GroupSwitchControl onSwitch={onSwitch} groupType={groupType} loading={loading} />
           </div>
           <div className="col-xs-6">
-            <GroupPersistControl onSave={this.onSave} onLoad={this.props.onLoad} loading={loading} />
+            <GroupPersistControl onSave={this.onSave} onLoad={onLoad} loading={loading} />
           </div>
         </div>
         {loading && <strong className="loading">Loading: ...</strong>}
