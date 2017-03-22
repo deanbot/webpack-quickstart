@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import AppHeader from '../containers/appHeader/AppHeader'; // eslint-disable-line import/no-named-as-default
+import AppHeader from './appHeader/AppHeader'; // eslint-disable-line import/no-named-as-default
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless

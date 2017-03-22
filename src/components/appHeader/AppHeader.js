@@ -4,7 +4,7 @@ import { IndexLink, Link } from 'react-router';
 
 require('./appHeader.scss');
 
-export const AppHeader = props => {
+export const AppHeader = ({ currentPath }) => {
   return (
     <nav className="app-header-navbar navbar navbar-default">
       <div className="container-fluid">
@@ -29,10 +29,10 @@ export const AppHeader = props => {
 
         <div className="collapse navbar-collapse">
           <ul className="nav navbar-nav">
-            <li className={props.currentPath == '/' ? 'active' : ''}>
+            <li className={currentPath == '/' ? 'active' : ''}>
               <IndexLink to="/">Home</IndexLink>
             </li>
-            <li className={props.currentPath == '/group' ? 'active' : ''}>
+            <li className={currentPath == '/group' ? 'active' : ''}>
               <Link to="/group">Group</Link>
             </li>
           </ul>
