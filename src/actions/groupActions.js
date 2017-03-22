@@ -25,13 +25,13 @@ export function saveGroupSuccess(group) {
   return { type: types.GROUP_SAVE_SUCCESS, group };
 }
 
-export function saveGroup(members) {
+export function saveGroup(group) {
   return function(dispatch) {
     dispatch(beginAjaxCall());
     return groupApi
-      .saveGroupMembers(members)
-      .then(members => {
-        dispatch(saveGroupSuccess(members));
+      .saveGroup(group)
+      .then(savedGroup => {
+        dispatch(saveGroupSuccess(savedGroup));
       })
       .catch(error => {
         dispatch(ajaxCallError(error));
@@ -44,9 +44,9 @@ export function loadGroup() {
   return function(dispatch) {
     dispatch(beginAjaxCall());
     return groupApi
-      .getGroupMembers()
-      .then(members => {
-        dispatch(loadGroupSuccess(members));
+      .loadGroup()
+      .then(group => {
+        dispatch(loadGroupSuccess(group));
       })
       .catch(error => {
         dispatch(ajaxCallError(error));

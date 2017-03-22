@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import GroupList from './GroupList';
 import GroupSwitchControl from './GroupSwitchControl';
-import LoadingDots from '../common/LoadingDots';
+import GroupPersistControl from './GroupPersistControl';
 require('./GroupControl.scss');
 
 class GroupControl extends React.Component {
@@ -11,6 +11,7 @@ class GroupControl extends React.Component {
     this.onSwitch = this.onSwitch.bind(this);
     this.onAdd = this.onAdd.bind(this);
     this.onRemove = this.onRemove.bind(this);
+    this.onSave = this.onSave.bind(this);
   }
 
   onSwitch(type) {
@@ -28,13 +29,24 @@ class GroupControl extends React.Component {
     this.props.onRemove(member.id);
   }
 
+  onSave() {
+    this.props.onSave(this.props.members);
+  }
+
   render() {
     const { groupType, members, loading } = this.props;
     return (
       <div>
-        <GroupSwitchControl onSwitch={this.onSwitch} groupType={groupType} loading={loading} />
+        <div className="row">
+          <div className="col-xs-6">
+            <GroupSwitchControl onSwitch={this.onSwitch} groupType={groupType} loading={loading} />
+          </div>
+          <div className="col-xs-6">
+            <GroupPersistControl onSave={this.onSave} onLoad={this.props.onLoad} loading={loading} />
+          </div>
+        </div>
+        {loading && <strong className="loading">Loading: ...</strong>}
         <GroupList members={members} onAdd={this.onAdd} onRemove={this.onRemove} loading={loading} />
-        {loading && <LoadingDots interval={100} dots={20} />}
       </div>
     );
   }
@@ -46,7 +58,9 @@ GroupControl.propTypes = {
   onRemove: PropTypes.func.isRequired,
   members: PropTypes.array.isRequired,
   groupType: PropTypes.string.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  onSave: PropTypes.func.isRequired,
+  onLoad: PropTypes.func.isRequired
 };
 
 export default GroupControl;

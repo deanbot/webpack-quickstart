@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { IndexLink, Link } from 'react-router';
 
 require('./appHeader.scss');
 
-const AppHeader = () => {
+export const AppHeader = props => {
   return (
     <nav className="app-header-navbar navbar navbar-default">
       <div className="container-fluid">
@@ -28,10 +29,10 @@ const AppHeader = () => {
 
         <div className="collapse navbar-collapse">
           <ul className="nav navbar-nav">
-            <li className="active">
+            <li className={props.currentPath == '/' ? 'active' : ''}>
               <IndexLink to="/">Home</IndexLink>
             </li>
-            <li>
+            <li className={props.currentPath == '/group' ? 'active' : ''}>
               <Link to="/group">Group</Link>
             </li>
           </ul>
@@ -42,4 +43,14 @@ const AppHeader = () => {
   );
 };
 
-export default AppHeader;
+AppHeader.propTypes = {
+  currentPath: PropTypes.string.isRequired
+};
+
+function mapStateToProps(state) {
+  return {
+    currentPath: state.routing.locationBeforeTransitions.pathname
+  };
+}
+
+export default connect(mapStateToProps)(AppHeader);

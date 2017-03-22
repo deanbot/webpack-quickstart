@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import ajaxStatus from './ajaxStatusReducer';
+import ajaxCallsInProgress from './ajaxCallsInProgressReducer';
 import group from './groupReducer';
 import groupType from './groupTypeReducer';
 
 const rootReducer = combineReducers({
-  ajaxStatus,
+  ajaxCallsInProgress,
   group,
   groupType,
   routing: routerReducer

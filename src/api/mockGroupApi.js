@@ -18,7 +18,7 @@ let groupMembers = [
 ];
 
 class GroupApi {
-  static getGroupMembers() {
+  static loadGroup() {
     return new Promise((resolve, reject) => {
       setTimeout(
         () => {
@@ -30,7 +30,7 @@ class GroupApi {
     });
   }
 
-  static saveGroupMembers(members) {
+  static saveGroup(members) {
     return new Promise((resolve, reject) => {
       setTimeout(
         () => {
