@@ -27,9 +27,6 @@ GroupPage.propTypes = {
 };
 
 function mapStateToProps(state) {
-  if (state.ajaxCallsInProgress > 0) {
-    console.log('loading!');
-  }
   return {
     groupType: state.groupType,
     group: state.group,

@@ -36,7 +36,7 @@ class GroupControl extends React.Component {
   render() {
     const { groupType, members, loading } = this.props;
     return (
-      <div>
+      <div className="group-control">
         <div className="row">
           <div className="col-xs-6">
             <GroupSwitchControl onSwitch={this.onSwitch} groupType={groupType} loading={loading} />
