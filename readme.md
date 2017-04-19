@@ -10,7 +10,7 @@ An es6 webpack react app quickstart with browserfy, linting, testing and other g
 4. Run `yarn run setup`. This installs dependencies and updates the package for a project's use.
 5. To remove app demo run `yarn remove-demo`.
 
-## Setup for Quickstart Development
+# Contribute
 
 1. [Install node](https://nodejs.org/en/download/)
 2. [Install yarn](https://yarnpkg.com/lang/en/docs/install/).

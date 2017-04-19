@@ -1,13 +1,12 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const GroupAddControl = ({ onAdd, loading }) => {
   const handleAdd = e => {
-    e.preventDefault();
-
+    e && e.preventDefault();
     if (loading) {
       return;
     }
-
     onAdd();
   };
 

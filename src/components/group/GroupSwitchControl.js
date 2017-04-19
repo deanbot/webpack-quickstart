@@ -1,9 +1,13 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import * as groupTypes from '../../constants/groupTypes';
 
 const GroupSwitchControl = ({ loading, groupType, onSwitch }) => {
   const switchType = e => {
     const clickedType = e.target.value;
+    if (loading) {
+      return;
+    }
     if (groupType != clickedType) {
       onSwitch(clickedType);
     }

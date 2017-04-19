@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import * as groupTypes from '../../constants/groupTypes';
 const srcJunimo = require('../../images/junimo.gif');
 const srcBirb = require('../../images/birb.png');
@@ -13,7 +14,7 @@ const GroupMember = ({ member, onRemove, loading }) => {
   }
 
   const handleClick = e => {
-    e.preventDefault();
+    e && e.preventDefault();
 
     if (loading) {
       return;
@@ -24,7 +25,7 @@ const GroupMember = ({ member, onRemove, loading }) => {
 
   return (
     <button className="group-member thumbnail" onClick={handleClick} disabled={loading}>
-      <img src={memberSrc} />
+      <img src={memberSrc} alt={member.type} />
     </button>
   );
 };

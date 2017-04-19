@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import GroupList from './GroupList';
 import GroupSwitchControl from './GroupSwitchControl';
 import GroupPersistControl from './GroupPersistControl';
